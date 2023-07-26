@@ -336,7 +336,7 @@ def main():  ### tfidf better ig
 
                         with open(r'graph.html', 'r') as f:
                             html_string = f.read()
-                        st.download_button(label='Download Graph Network in .html format',file_name=r'graph.html',data=html_string)
+                        st.download_button(label='Download Graph Network in .html format',file_name=r'graph.html',data=html_string,mime='text/html')
 
         with tab2:
             # relationship1 = st.selectbox("Select Relationship type",['Inclusion','Objective','Effect','Process','Likeness','Misc'],key=9,)
