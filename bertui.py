@@ -349,10 +349,10 @@ def main():  ### tfidf better ig
             templ = techoutliers(df_trt,patentinfo,relationship1,keystouse)
             
             outdict = keywordsynonyms(templ,0.8)
-            st.write(list(outdict.keys())
-            # select = st.selectbox("Search for outliers",list(outdict.keys()),key=99)
-            # st.json(outdict,expanded = False)
-            # st.json(outlierdict,expanded=False)
+            st.write(list(outdict.keys()))
+            select = st.selectbox("Search for outliers",list(outdict.keys()),key=99)
+            st.json(outdict,expanded = False)
+            st.json(outlierdict,expanded=False)
             
         with tab3:   
             prominenttech(jsont)
