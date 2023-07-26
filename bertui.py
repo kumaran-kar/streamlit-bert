@@ -352,7 +352,7 @@ def main():  ### tfidf better ig
             st.write(list(outdict.keys()))
             select = st.selectbox("Search for outliers",list(outdict.keys()),key=99)
             st.json(outdict,expanded = False)
-            st.json(outlierdict,expanded=False)
+            # st.json(outlierdict,expanded=False)
             
         with tab3:   
             prominenttech(jsont)
