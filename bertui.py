@@ -349,6 +349,8 @@ def main():  ### tfidf better ig
             like = ['as'] ## Likeness
             templ = techoutliers(df_trt,patentinfo,relationship1,keystouse)
             select = st.selectbox("Search for outliers",templ,key=11)
+            outdict = keywordsynonyms(templ,0.8)
+            st.json(outdict)
             # st.json(outlierdict)
             
         with tab3:   
