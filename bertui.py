@@ -351,7 +351,7 @@ def main():  ### tfidf better ig
             select = st.selectbox("Search for outliers",templ,key=11)
             outdict = keywordsynonyms(templ,0.8)
             st.json(outdict)
-            # st.json(outlierdict)
+            # st.json(outlierdict,expanded=False)
             
         with tab3:   
             prominenttech(jsont)
