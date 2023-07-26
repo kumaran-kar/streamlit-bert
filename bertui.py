@@ -3,11 +3,10 @@ import pandas as pd
 import numpy as np
 import PatentInfo
 import GenerateTRT
-from streamlit_agraph import agraph, Node, Edge, Config
 import mpnet_load
 import TextEmbedding
 import keywordBERT
-import Clustering
+# import Clustering
 import KeywordMapping
 
 st.set_page_config(initial_sidebar_state='collapsed',layout='wide')
@@ -89,10 +88,10 @@ def mapkeywords(df,keywords):
     df_map = KeywordMapping.keywordmap(df,keywords)
     return df_map
 
-@st.cache_data
-def clustering(abstracts_embedded,pubno,abstracts):
-    df = Clustering.cluster_abstracts(abstracts_embedded,pubno,abstracts)
-    return df
+# @st.cache_data
+# def clustering(abstracts_embedded,pubno,abstracts):
+#     df = Clustering.cluster_abstracts(abstracts_embedded,pubno,abstracts)
+#     return df
 
 @st.cache_data
 def keywordsynonyms(kws,threshold):
@@ -120,29 +119,29 @@ def get_keywords_df(df):
     kws = set(list(df['T1'])) | set(list(df['T2']))
     return list(kws)
 
-@st.cache_data
-def graph_data(df,keystouse):
-    nodes = []
-    edges = []
+# @st.cache_data
+# def graph_data(df,keystouse):
+#     nodes = []
+#     edges = []
     
-    for index,row in df.iterrows():
-        if (row['T1'] and row['T2']) in keystouse:
-            if len(df['Prep'].unique()) > 1:
-                edges.append(Edge(source=row['T1'],target=row['T2'],color=row['Prep']))
-            else:
-                edges.append(Edge(source=row['T1'],target=row['T2']))
-    kws = get_keywords_df(df)
-    for kw in kws:
-        if kw in keystouse:
-            # pubno = 
+#     for index,row in df.iterrows():
+#         if (row['T1'] and row['T2']) in keystouse:
+#             if len(df['Prep'].unique()) > 1:
+#                 edges.append(Edge(source=row['T1'],target=row['T2'],color=row['Prep']))
+#             else:
+#                 edges.append(Edge(source=row['T1'],target=row['T2']))
+#     kws = get_keywords_df(df)
+#     for kw in kws:
+#         if kw in keystouse:
+#             # pubno = 
             
-            nodes.append(Node(id = kw,size=10))
-    config = Config(width=750,
-                height=950,
-                directed=True, 
-                physics=False, 
-                hierarchical=False)
-    return nodes,edges,config
+#             nodes.append(Node(id = kw,size=10))
+#     config = Config(width=750,
+#                 height=950,
+#                 directed=True, 
+#                 physics=False, 
+#                 hierarchical=False)
+#     return nodes,edges,config
 
 @st.cache_data
 def jsonlist(df,keywords_scores,keystouse):
@@ -170,14 +169,6 @@ def jsonlist(df,keywords_scores,keystouse):
 def pyvisgraph(jsont):
     from pyvis.network import Network
     net = Network(filter_menu=True,neighborhood_highlight=True,directed=True)
-    # df_filtered1 = df[df['T1'].isin(keystouse)]
-    # df_filtered2 = df_filtered1[df_filtered1['T2'].isin(keystouse)]
-    # net.add_nodes(keystouse,title=keystouse)
-    # for index,row in df_filtered2.iterrows():
-    #     # indext1 = keystouse.index(row['T1'])
-    #     # indext2 = keystouse.index(row['T2'])
-    #     net.add_edge(row['T1'],row['T2'])
-    
     import networkx as nx
     g = nx.Graph()
     nodes = list(jsont.keys())
