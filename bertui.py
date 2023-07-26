@@ -226,6 +226,7 @@ def techoutliers(df,patentinfo,relationship,keystouse):
     # tempdict = dict()
     # t1list = list(df1['T1'].unique())
     st.write(templ)
+    select = st.selectbox("Search for outliers",templ,key=11)
     # keydict = keywordsynonyms()
     # preplist = list(df['Prep'].unique())
     # for t1 in t1list:
