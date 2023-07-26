@@ -21,7 +21,7 @@ def abstract_pubno(file):
 @st.cache_resource
 def load_spacy():
     import spacy
-    nlp = spacy.load(r'en_core_web_lg-3.5.0')
+    nlp = spacy.load('en_core_web_md-3.5.0')
     return nlp
 
 @st.cache_resource
