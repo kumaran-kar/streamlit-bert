@@ -215,7 +215,8 @@ def prominenttech(jsont):
 def techoutliers(df,patentinfo,relationship,keystouse):
     st.markdown("Detecting Technology outliers")
     from keyphrase_vectorizers import KeyphraseTfidfVectorizer
-    vect = KeyphraseTfidfVectorizer(spacy_pipeline=r'en_core_web_lg-3.5.0',stop_words='english',max_df=1)
+    nlp = load_spacy()
+    vect = KeyphraseTfidfVectorizer(spacy_pipeline=nlp,stop_words='english',max_df=1)
     vect.fit(patentinfo['abstracts'])
     templ = list(vect.get_feature_names_out())
     # from sklearn.metrics.pairwise import cosine_similarity
