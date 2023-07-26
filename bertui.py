@@ -226,7 +226,8 @@ def techoutliers(df,patentinfo,relationship,keystouse):
     # tempdict = dict()
     # t1list = list(df1['T1'].unique())
     st.write(templ)
-    select = st.selectbox("Search for outliers",templ,key=11)
+    return templ
+    
     # keydict = keywordsynonyms()
     # preplist = list(df['Prep'].unique())
     # for t1 in t1list:
@@ -346,7 +347,8 @@ def main():  ### tfidf better ig
             eff = ['to','across','against'] ## Effect
             pro = ['during','into','through','via'] ## Process
             like = ['as'] ## Likeness
-            techoutliers(df_trt,patentinfo,relationship1,keystouse)
+            templ = techoutliers(df_trt,patentinfo,relationship1,keystouse)
+            select = st.selectbox("Search for outliers",templ,key=11)
             # st.json(outlierdict)
             
         with tab3:   
